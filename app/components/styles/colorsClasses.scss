@@ -1,0 +1,50 @@
+.primary-border-color {
+  border-color: $primary-color;
+}
+.secondary-border-color {
+  border-color: $black-5;
+}
+///////////
+
+.main-yellow-background-color {
+  background-color: $main-yellow;
+}
+.primary-background-color {
+  background-color: $primary-color;
+}
+.light-gray-background-color {
+  background-color: $black-5;
+}
+
+//////////////
+.main-yellow-color {
+  color: $main-yellow;
+}
+.bg-red-3 {
+  background-color: #ff4a47;
+}
+.primary-color {
+  color: $primary-color;
+}
+.secondary-color {
+  color: $secondary-color;
+}
+.tertiary-color {
+  color: $tertiary-color;
+}
+.lighter-black {
+  $primary-color: $black-2;
+}
+.text-dark {
+  color: $black-1;
+}
+.text-gray {
+  color: $black-4;
+}
+
+.make-svg-white {
+  fill: white;
+  path {
+    fill: white;
+  }
+}

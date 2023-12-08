@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import "./components/styles/animations.scss";
+@import "./components/styles/colorsClasses.scss";
+@import "./components/styles/fontSizes.scss";
+@import "./components/styles/fontFamily.scss";
+@import "./components/styles/others.scss";
+
+* {
+  scroll-behavior: smooth;
+}
+
+.main-header {
+  font-family: "Roboto serif";
+  font-weight: 600;
+  font-size: 54px;
+  color: $black-2;
+  line-height: 125%;
+}

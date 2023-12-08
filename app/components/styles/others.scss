@@ -1,0 +1,36 @@
+.main-page-image {
+  width: 28rem;
+  height: 26rem;
+}
+.product-image {
+  height: 27rem;
+}
+
+.explore-more {
+  font-family: "Patrick Hand", sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  color: $black-2;
+  line-height: 125%;
+}
+
+.MainProductCard {
+  height: 33.3rem;
+}
+.MainProductCardLine {
+  height: 1px;
+}
+.FeaturesLine {
+  height: 2px;
+}
+.seperator {
+  height: 2px;
+  background-color: $black-5;
+}
+.hideScrollBar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.hideScrollBar::-webkit-scrollbar {
+  display: none;
+}

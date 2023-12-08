@@ -1,0 +1,23 @@
+@import "./variables.scss";
+.desFeatures {
+  position: relative;
+  &::before {
+    height: 2px;
+    position: absolute;
+    content: "";
+    animation: underLineAnimation 0.3s ease-in-out;
+    animation-fill-mode: forwards;
+    bottom: 0;
+    left: 0;
+    background-color: $black-4;
+  }
+}
+
+@keyframes underLineAnimation {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 100%;
+  }
+}
