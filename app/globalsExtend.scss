@@ -15,6 +15,19 @@
   font-family: "Roboto serif";
   font-weight: 600;
   font-size: 54px;
+  @media screen and (max-width: 768px) {
+    font-size: 38px;
+  }
   color: $black-2;
   line-height: 125%;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+// prettier-ignore
+input[type=number] {
+    -moz-appearance: textfield;
 }

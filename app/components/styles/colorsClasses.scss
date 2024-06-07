@@ -38,10 +38,36 @@
 .text-dark {
   color: $black-1;
 }
+.text-dark-blue {
+  color: $blue-1;
+}
 .text-gray {
   color: $black-4;
 }
-
+.light-gray {
+  color: $black-5;
+}
+.light-blue {
+  color: #1363df;
+}
+.bg-light-blue {
+  background-color: #1363df;
+}
+.border-light-blue {
+  border-color: #1363df;
+}
+.blue-whale {
+  color: #1a374d;
+}
+.bg-blue-whale {
+  background-color: #1a374d;
+}
+.border-blue-whale {
+  border-color: #1a374d;
+}
+.main-filler {
+  background-color: #fae9e9;
+}
 .make-svg-white {
   fill: white;
   path {

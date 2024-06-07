@@ -1,22 +1,35 @@
+$size-1: 20px;
+$size-2: 18px;
+$size-3: 16px;
+$size-4: 14px;
 .text-4r {
   font-family: "Open Sans", sans-serif;
   font-weight: 400;
-  font-size: 14px;
+  font-size: $size-4;
 }
 .text-3r {
   font-family: "Open Sans", sans-serif;
   font-weight: 400;
-  font-size: 16px;
+  font-size: $size-3;
+  @media screen and (max-width: 768px) {
+    font-size: $size-4;
+  }
 }
 .text-2r {
   font-family: "Open Sans", sans-serif;
   font-weight: 400;
-  font-size: 18px;
+  font-size: $size-2;
+  @media screen and (max-width: 768px) {
+    font-size: $size-3;
+  }
 }
 .text-1r {
   font-family: "Open Sans", sans-serif;
   font-weight: 400;
-  font-size: 18px;
+  font-size: $size-1;
+  @media screen and (max-width: 768px) {
+    font-size: $size-2;
+  }
 }
 .text-tinysb {
   font-family: "Open Sans", sans-serif;
@@ -26,22 +39,31 @@
 .text-4sb {
   font-family: "Open Sans", sans-serif;
   font-weight: 600;
-  font-size: 14px;
+  font-size: $size-4;
 }
 .text-3sb {
   font-family: "Open Sans", sans-serif;
   font-weight: 600;
-  font-size: 16px;
+  font-size: $size-3;
+  @media screen and (max-width: 768px) {
+    font-size: $size-4;
+  }
 }
 .text-2sb {
   font-family: "Open Sans", sans-serif;
   font-weight: 600;
-  font-size: 18px;
+  font-size: $size-2;
+  @media screen and (max-width: 768px) {
+    font-size: $size-3;
+  }
 }
 .text-1sb {
   font-family: "Open Sans", sans-serif;
   font-weight: 600;
-  font-size: 18px;
+  font-size: $size-1;
+  @media screen and (max-width: 768px) {
+    font-size: $size-2;
+  }
 }
 ///////
 .desktop-4r {

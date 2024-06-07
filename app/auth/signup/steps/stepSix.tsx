@@ -59,12 +59,7 @@ export default function SixthStep({
   let [current, setCurrent] = useState(0);
 
   return (
-    <div
-      className="pt-20"
-      onClick={() => {
-        console.log({ current });
-      }}
-    >
+    <div className="sm:pt-20 h-screen">
       <AuthContainer>
         <div className="flex flex-col gap-8">
           <motion.div
@@ -72,63 +67,7 @@ export default function SixthStep({
               current == 0 && "w-1/3"
             } ${current == 1 && "w-2/3"} ${current == 2 && "w-full"}`}
           ></motion.div>
-          <div className="grid grid-cols-2 gap-10 px-8">
-            <div
-              className={`flex flex-col justify-between items-center ${
-                current == 2 ? "col-span-2" : "col-span-1"
-              }`}
-            >
-              <AnimatePresence>
-                {
-                  {
-                    0: (
-                      <FirstOne
-                        current={current}
-                        headerVariants={headerVariants}
-                        imageVariants={imageVariants}
-                      />
-                    ),
-                    1: (
-                      <SecondOne
-                        current={current}
-                        headerVariants={headerVariants}
-                        imageVariants={imageVariants}
-                      />
-                    ),
-                    2: (
-                      <ThirdOne
-                        current={current}
-                        headerVariants={headerVariants}
-                        imageVariants={imageVariants}
-                      />
-                    ),
-                  }[current]
-                }
-              </AnimatePresence>
-              {current != 2 ? (
-                <button
-                  className="py-2 primary-color text-2sb w-11/12 md:w-10/12 
-            flex flex-row gap-2 items-center border-2 primary-border-color justify-center rounded-md font-bold"
-                  onClick={() => {
-                    setCurrent((prev) => prev + 1);
-                  }}
-                >
-                  Next
-                </button>
-              ) : (
-                <button
-                  className="py-2 text-white text-2sb w-10/12 sm:w-5/12  primary-background-color 
-            flex flex-row gap-2 items-center justify-center rounded-md font-bold"
-                  onClick={() => {
-                    if (typeof window !== "undefined") {
-                      window.location.href = "/";
-                    }
-                  }}
-                >
-                  Proceed to website
-                </button>
-              )}
-            </div>
+          <div className="grid grid-col-1 sm:grid-cols-2 gap-10 px-8">
             <AnimatePresence>
               {
                 {
@@ -168,6 +107,62 @@ export default function SixthStep({
                 }[current]
               }
             </AnimatePresence>
+            <div
+              className={`flex flex-col justify-between items-center ${
+                current == 2 ? "col-span-2" : "col-span-1"
+              }`}
+            >
+              <AnimatePresence>
+                {
+                  {
+                    0: (
+                      <FirstOne
+                        current={current}
+                        headerVariants={headerVariants}
+                        imageVariants={imageVariants}
+                      />
+                    ),
+                    1: (
+                      <SecondOne
+                        current={current}
+                        headerVariants={headerVariants}
+                        imageVariants={imageVariants}
+                      />
+                    ),
+                    2: (
+                      <ThirdOne
+                        current={current}
+                        headerVariants={headerVariants}
+                        imageVariants={imageVariants}
+                      />
+                    ),
+                  }[current]
+                }
+              </AnimatePresence>
+              {current != 2 ? (
+                <button
+                  className="py-2 primary-color text-2sb w-11/12 md:w-9/12 mt-8 sm:mt-0 
+            flex flex-row gap-2 items-center bg-blue-500 text-white justify-center rounded-md font-bold"
+                  onClick={() => {
+                    setCurrent((prev) => prev + 1);
+                  }}
+                >
+                  Next
+                </button>
+              ) : (
+                <button
+                  className="py-2 text-white text-2sb w-10/12 sm:w-5/12  primary-background-color 
+            flex flex-row gap-2 items-center justify-center rounded-md font-bold"
+                  onClick={() => {
+                    if (typeof window !== "undefined") {
+                      window.location.href = "/";
+                    }
+                  }}
+                >
+                  Proceed to website
+                </button>
+              )}
+            </div>
           </div>
         </div>
       </AuthContainer>

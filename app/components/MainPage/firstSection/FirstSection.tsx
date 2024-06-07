@@ -1,52 +1,26 @@
-import FashionImage from "@/public/images/categories/Fashion.png";
-import HomeImage from "@/public/images/categories/Home.png";
-import GamingImage from "@/public/images/categories/Gaming.png";
-import ReadingImage from "@/public/images/categories/Reading.png";
-import CategoryElement from "./categoryElement";
-import Link from "next/link";
+import { fetchServer } from "@/utils/functions/fetchServer";
+import CategoriesResult from "./CategoriesResult";
 
-export default function FirstSection() {
-  let categories = [
-    {
-      name: "Fashion & makeup",
-      link: "fashion&makeup",
-      image: FashionImage,
+export default async function FirstSection() {
+  const categoriesData = await fetchServer({
+    urlInfo: {
+      port: process.env.PRODUCTS_PORT as string,
+      service: process.env.PRODUCTS_URL as string,
+      url: "api/v1/products/categories/all/",
     },
-    {
-      name: "Home & furniture",
-      link: "home&furniture",
-      image: HomeImage,
-    },
-    {
-      name: "Gaming & consoles",
-      link: "gaming&consoles",
-      image: GamingImage,
-    },
-    {
-      name: "Reading & learning",
-      link: "reading&learning",
-      image: ReadingImage,
-    },
-  ];
-  let categoriesResult = categories.map((category) => {
-    return <CategoryElement {...category} />;
+    method: "GET",
+    revalidate: 10000,
   });
+
   return (
-    <div className="w-10/12 m-auto mt-16 flex flex-col gap-4">
-      <div className="flex flex-col gap-4 secondary-color">
-        <div className="flex flex-row justify-between">
-          <h2 className="header-5sb">Most popular categories</h2>
-          <div className="flex flex-col items-baseline justify-end">
-            {/* Your other content */}
-            <Link href="/categories" className=" text-3sb">
-              View all categories
-            </Link>
+    <div className="w-full bg-yellow-100 py-8">
+      <div className="w-11/12 m-auto  flex flex-col gap-12 ">
+        <div className="flex flex-col gap-4 secondary-color">
+          <div className="flex flex-row justify-between">
+            <h2 className="header-5sb">Categories</h2>
           </div>
         </div>
-        <div className="pt-1 bg-gray-700"></div>
-      </div>
-      <div className="text-2xl text-black grid grid-cols-4">
-        {categoriesResult}
+        <CategoriesResult categories={categoriesData.categories} />
       </div>
     </div>
   );

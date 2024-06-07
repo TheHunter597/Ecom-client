@@ -1,5 +1,5 @@
+"use client";
 import AuthContainer from "../../components/container";
-
 import Input from "../components/input";
 import { useState } from "react";
 import rightArrow from "@/public/assets/arrows/rightArrow.svg";
@@ -10,10 +10,11 @@ import {
   setUserConfirmPassword,
   setUserEmail,
   setUserPassword,
-} from "@/redux/userCreation";
+} from "@/redux/auth/userCreation";
 import { useAppSelector } from "@/redux/reduxHooks";
 import { useFetch } from "@/utils/hooks/useFetch";
 import ReactLoading from "react-loading";
+import Link from "next/link";
 export default function StepOne({
   changeCurrentStep,
 }: {
@@ -103,7 +104,12 @@ export default function StepOne({
           ) : (
             ""
           )}
-
+          <span className="text-3sb text-gray-700 w-full text-center">
+            Already have an account{" "}
+            <Link className="text-red-500" href={"/auth/login"}>
+              Login
+            </Link>
+          </span>
           {loading ? (
             <div className="flex flex-row justify-center">
               <ReactLoading
@@ -116,20 +122,12 @@ export default function StepOne({
           ) : (
             <button
               className="py-2 main-yellow-background-color primary-color text-2sb w-full 
-            flex flex-row gap-2 items-center justify-center rounded-md font-bold"
+            flex flex-row gap-2 items-center justify-center rounded-md font-bold h-10 "
             >
               Next
               <Image src={rightArrow} alt="right arrow" />
             </button>
           )}
-          <button
-            className="primary-color"
-            onClick={() => {
-              changeCurrentStep((prev: number) => prev + 1);
-            }}
-          >
-            pass
-          </button>
         </form>
       </AuthContainer>
     </div>

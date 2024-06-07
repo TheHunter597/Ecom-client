@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function MainPageLeftSide() {
   return (
     <>
@@ -6,7 +8,7 @@ export default function MainPageLeftSide() {
           Elevate Your <span className="tertiary-color">Style</span> with
           Affordable <span className="tertiary-color">Elegance</span>
         </h1>
-        <h2 className="text-1r secondary-color">
+        <h2 className="text-1sb secondary-color">
           Say goodbye to compromise – our products blend style, functionality,
           and affordability seamlessly
         </h2>
@@ -16,12 +18,15 @@ export default function MainPageLeftSide() {
           <span className="tertiary-color ">Shop</span> Now for Exclusive Deals
         </h3>
         <div className="flex flex-row gap-4">
-          <button className="text-1r primary-color main-yellow-background-color py-2 px-2 rounded-md">
+          <button className="text-2r primary-color main-yellow-background-color py-2 px-2 rounded-md">
             Find out what’s new
           </button>
-          <button className="text-1r text-white primary-background-color py-2 px-2 rounded-md">
+          <Link
+            href={(process.env.NEXT_PUBLIC_PORTFOLIO_URL as string) || ""}
+            className="text-2r text-white primary-background-color py-2 px-2 rounded-md"
+          >
             Contact us
-          </button>
+          </Link>
         </div>
       </div>
     </>

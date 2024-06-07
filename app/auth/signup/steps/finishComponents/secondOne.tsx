@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-export default function ({
+export default function SecondStep({
   current,
   imageVariants,
   headerVariants,
@@ -24,7 +24,7 @@ export default function ({
       <h4 className="text-3r primary-color">
         Unlock incredible savings with our amazing discounts available around
         the clock. We pride ourselves on offering unbeatable deals that cater to
-        your needs whenever you're ready to shop.v
+        your needs whenever you &apos; re ready to shop.v
       </h4>
     </motion.div>
   );

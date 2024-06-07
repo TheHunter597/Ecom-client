@@ -7,7 +7,7 @@ interface Props {
     service: string;
   };
   method: "GET" | "POST" | "PUT" | "DELETE";
-  cache?: "no-cache" | "reload" | "force-cache" | "only-if-cached";
+  cache?: "no-store" | "reload" | "force-cache" | "only-if-cached";
   withToken?: boolean;
   withCredentials?: boolean;
   body?: any;
@@ -21,21 +21,30 @@ export async function fetchServer({
   withToken,
   withCredentials,
   body,
-  revalidate = 120,
+  revalidate,
 }: Props) {
-  let token = cookies().get("access")?.value;
-  let response = await fetch(`http://${service}:${port}/${url}`, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-      ...(withToken && { Authorization: `Bearer ${token}` }),
-    },
-    ...(withCredentials && { credentials: "include" }),
-    cache,
-    body: JSON.stringify(body),
-    next: { revalidate: revalidate },
-  });
-  let data = await response.json();
+  let token;
+  if (withToken) {
+    token = cookies().get("access")?.value;
+  }
 
-  return data;
+  try {
+    let response = await fetch(`http://${service}:${port}/${url}`, {
+      method: method || "GET",
+      headers: {
+        "Content-Type": "application/json",
+        ...(withToken && { Authorization: `Bearer ${token}` }),
+      },
+      ...(withCredentials && { credentials: "include" }),
+      cache,
+      body: JSON.stringify(body),
+      next: { revalidate: revalidate },
+    });
+
+    let data = await response.json();
+    return data;
+  } catch (err) {
+    console.log("Error fetching data from server");
+    return {};
+  }
 }

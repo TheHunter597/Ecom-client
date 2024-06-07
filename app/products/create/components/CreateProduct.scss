@@ -1,0 +1,46 @@
+.RemoveBackgroundImage {
+  position: absolute;
+  top: 3%;
+  left: 3%;
+  background-color: #303030;
+  border-radius: 30px;
+  width: 100px;
+  height: 30px;
+  @media screen and (max-width: 768px) {
+    top: 5%;
+    left: 5%;
+    width: 75px;
+    height: 25px;
+  }
+  cursor: pointer;
+  span {
+    position: absolute;
+    top: -19%;
+    left: 0;
+    width: 40%;
+    height: 130%;
+    border-radius: 50%;
+    background-color: #f86363;
+    transition-duration: 500ms;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  &--active {
+    span {
+      background-color: #50a63a;
+      transform: translateX(180%);
+    }
+  }
+}
+
+.CreateProductImage {
+  height: 65vh;
+  width: 100%;
+  @media screen and (max-width: 768px) {
+    height: 45vh;
+  }
+}

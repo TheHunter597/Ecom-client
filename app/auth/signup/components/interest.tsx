@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { addCategory, removeCategory } from "@/redux/userCreation";
+import { addCategory, removeCategory } from "@/redux/auth/userCreation";
 import { useAppDispatch, useAppSelector } from "@/redux/reduxHooks";
 export default function Interest({ name, id }: { name: string; id: number }) {
   let variants = {

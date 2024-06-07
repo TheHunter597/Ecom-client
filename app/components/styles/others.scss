@@ -14,9 +14,6 @@
   line-height: 125%;
 }
 
-.MainProductCard {
-  height: 33.3rem;
-}
 .MainProductCardLine {
   height: 1px;
 }
@@ -33,4 +30,21 @@
 }
 .hideScrollBar::-webkit-scrollbar {
   display: none;
+}
+
+.productCardImage {
+  width: 100%;
+  height: 15rem;
+}
+
+.filtersPadding {
+  padding: 0.4rem 0;
+}
+
+.InvertHoverButton {
+  &:hover {
+    img {
+      filter: invert(1) !important;
+    }
+  }
 }

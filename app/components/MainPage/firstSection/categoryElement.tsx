@@ -1,19 +1,29 @@
 "use client";
+import "./FirstSection.scss";
 
 import { AnimatePresence } from "framer-motion";
 import Image from "next/image";
-import Link from "next/link";
 import { motion } from "framer-motion";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 export default function CategoryElement({
   name,
   image,
   link,
+  index,
+  currentActive,
+  setCurrentActive,
 }: {
   name: string;
   image: any;
   link: string;
+  index: number;
+  currentActive: number;
+  setCurrentActive: React.Dispatch<React.SetStateAction<number>>;
 }) {
+  const [elementPointerCurrentX, setElementPointerCurrentX] =
+    useState<number>(0);
+  const router = useRouter();
   let [hovered, setHovered] = useState(false);
   let headerVariants = {
     initial: {
@@ -51,46 +61,110 @@ export default function CategoryElement({
       },
     },
   };
+  let imageVariants = {
+    initial: {
+      width:
+        currentActive - 1 == index || currentActive + 1 == index
+          ? "10rem"
+          : "14rem",
+      fontSize:
+        currentActive - 1 == index || currentActive + 1 == index
+          ? "1.2rem"
+          : "1.5rem",
+      y: index % 2 === 0 ? -20 : 20,
+      clipPath: "polygon(10% 0, 100% 0%, 90% 100%, 0% 100%)",
+      filter: "brightness(82%)",
+    },
+    active: {
+      width: "16rem",
+      transition: {
+        duration: 0.3,
+        ease: "easeInOut",
+      },
+      clipPath: "polygon(0 0, 100% 0%, 100% 100%, 0% 100%)",
+      filter: "brightness(100%)",
+    },
+  };
   return (
-    <Link
-      href={`/categories/${link}`}
-      className="relative flex items-center justify-center cursor-pointer overflow-hidden"
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
+    <div
+      onMouseDown={(e) => {
+        setElementPointerCurrentX(e.clientX);
+      }}
+      onMouseUp={(e) => {
+        if (Math.abs(elementPointerCurrentX - e.clientX) < 10) {
+          // router.push(`/products?category=${link}`);
+        }
+      }}
+      className="w-fit px-2"
+      onMouseEnter={() => {
+        setHovered(true);
+        setCurrentActive(index);
+      }}
+      onMouseLeave={() => {
+        setHovered(false);
+        setCurrentActive(-1);
+      }}
     >
-      <Image src={image} alt="name" loading="lazy" />
-      <AnimatePresence>
-        {!hovered ? (
-          <motion.h3
-            key={`${name}-header`}
-            variants={headerVariants}
-            initial="exit"
-            exit="exit"
-            animate="initial"
-            className="w-10/12 m-auto absolute top-1/4 text-center paprika header-4sb 
-      font-normal secondary-color leading-normal"
-          >
-            {name}
-          </motion.h3>
-        ) : (
-          <motion.div
-            variants={overlayVariants}
-            key={`${name}-overlay`}
-            initial="exit"
-            exit="exit"
-            animate="initial"
-            className="absolute bottom-0 py-4 h-3/5 px-2 flex flex-row items-center
+      <motion.div
+        variants={imageVariants}
+        className="relative flex items-center justify-center cursor-pointer overflow-hidden w-fit"
+        animate={hovered ? "active" : "initial"}
+        initial="initial"
+      >
+        <Image
+          src={image}
+          alt="name"
+          loading="lazy"
+          height={0}
+          width={0}
+          sizes="20vw"
+          style={{
+            height: "70vh",
+            width: "16rem",
+          }}
+          className="FirstSectionImage"
+        />
+        <AnimatePresence>
+          {!hovered ? (
+            <motion.h3
+              key={`${name}-header`}
+              variants={headerVariants}
+              initial="exit"
+              exit="exit"
+              animate="initial"
+              className="max-w-fit m-auto absolute top-1/4 text-center paprika  
+      font-normal text-white "
+            >
+              {name.includes("&")
+                ? name
+                    .split("&")
+                    .map(
+                      (element) =>
+                        element.charAt(0).toUpperCase() + element.slice(1)
+                    )
+                    .join(" & ")
+                : name.charAt(0).toUpperCase() + name.slice(1)}
+            </motion.h3>
+          ) : (
+            <motion.div
+              variants={overlayVariants}
+              key={`${name}-overlay`}
+              initial="exit"
+              exit="exit"
+              animate="initial"
+              className="absolute bottom-0 py-4 h-3/5 px-2 flex flex-row items-center
            bg-black bg-opacity-50"
-          >
-            <h3 className="text-center flex flex-col gap-2 text-white">
-              <span className="text-2sb">{name}</span>
-              <span className="text-3r">
-                View most popular products in {name} category
-              </span>
-            </h3>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </Link>
+            >
+              <h3 className="text-center flex flex-col gap-2 text-white">
+                <span className="text-2sb">{name}</span>
+                <span className="text-3r">
+                  View most popular products in {name} category
+                </span>
+              </h3>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </motion.div>
+    </div>
   );
 }

@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-export default function ({
+export default function FirstStep({
   current,
   imageVariants,
   headerVariants,

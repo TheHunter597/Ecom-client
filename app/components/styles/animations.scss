@@ -5,19 +5,37 @@
     height: 2px;
     position: absolute;
     content: "";
-    animation: underLineAnimation 0.3s ease-in-out;
-    animation-fill-mode: forwards;
+    animation: underLineAnimation 0.3s ease-in-out forwards;
     bottom: 0;
     left: 0;
     background-color: $black-4;
   }
 }
-
+.desFeatures-inactive {
+  position: relative;
+  &::before {
+    height: 2px;
+    position: absolute;
+    content: "";
+    animation: underLineAnimation-inactive 0.3s ease-in-out forwards;
+    bottom: 0;
+    left: 0;
+    background-color: $black-4;
+  }
+}
 @keyframes underLineAnimation {
   0% {
     width: 0;
   }
   100% {
     width: 100%;
+  }
+}
+@keyframes underLineAnimation-inactive {
+  0% {
+    width: 100%;
+  }
+  100% {
+    width: 0%;
   }
 }

@@ -1,5 +1,6 @@
+"use client";
 import axios from "axios";
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 interface props {
   url: string;
@@ -27,16 +28,16 @@ export const useFetch = ({
       .find((item) => item.includes("access"))
       ?.split("=")[1];
   }
-
-  async function fetchData(overload: any = null) {
+  let fetchData = async function (overload: any = null) {
     if (overload) {
       body[Object.keys(overload)[0]] = overload[Object.keys(overload)[0]];
     }
     setLoading(true);
     try {
       let res;
-      if (method === "get") {
-        res = await axios.get(url, {
+
+      if (method === "get" || method === "delete") {
+        res = await axios[method](url, {
           withCredentials: withCredentials ? true : false,
           headers: {
             Authorization: withToken ? `Bearer ${token}` : null,
@@ -50,19 +51,18 @@ export const useFetch = ({
           },
         });
       }
-
-      const response = await res.data;
-      setData(response);
       setError(null);
+      setData(res.data);
       setLoading(false);
       return true;
     } catch (err: any) {
       setError(err.response.data);
+
       setData(null);
       setLoading(false);
       return false;
     }
-  }
+  };
 
   return { data, loading, error, fetchData };
 };

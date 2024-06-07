@@ -5,13 +5,14 @@ import accountNotActive from "@/public/assets/others/accountNotActive.png";
 import Image from "next/image";
 import { useFetch } from "@/utils/hooks/useFetch";
 import AuthContainer from "../../components/container";
+import ResendConfirmationButton from "./stepTwo/ResendConfimationButton";
 export default function StepTwo({
   changeCurrentStep,
 }: {
   changeCurrentStep: Function;
 }) {
   let [accountActive, SetAccountActive] = useState(false);
-  let { data, loading, error, fetchData } = useFetch({
+  let { fetchData } = useFetch({
     url: "/api/v1/auth/confirmed/",
     method: "post",
     withCredentials: true,
@@ -67,24 +68,7 @@ export default function StepTwo({
               Continue
               <Image src={rightArrow} alt="right arrow" />
             </button>
-            <button
-              className="py-2 primary-background-color  primary-color text-2sb w-full 
-            flex flex-row gap-2 items-center justify-center rounded-md font-bold text-white"
-              onClick={(e) => {
-                e.preventDefault();
-                changeCurrentStep((prev: number) => prev + 1);
-              }}
-            >
-              Resend
-            </button>
-            <button
-              className="primary-color"
-              onClick={() => {
-                changeCurrentStep((prev: number) => prev + 1);
-              }}
-            >
-              pass
-            </button>
+            <ResendConfirmationButton />
           </div>
         </div>
       </AuthContainer>

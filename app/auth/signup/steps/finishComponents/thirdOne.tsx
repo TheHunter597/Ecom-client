@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-export default function ({
+export default function ThirdStep({
   current,
   imageVariants,
   headerVariants,
@@ -18,7 +18,7 @@ export default function ({
       animate={current === 2 ? "initial" : "start"}
       key="third-header"
     >
-      <h2 className="secondary-color text-3xl font-bold text-center w-10/12">
+      <h2 className="secondary-color text-3xl font-bold text-center w-9/12 pt-8">
         Congratulation Your profile successfully created Have fun !
       </h2>
     </motion.div>

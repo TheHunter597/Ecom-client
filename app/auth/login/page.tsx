@@ -5,12 +5,13 @@ import ReactLoading from "react-loading";
 import closedEye from "@/public/assets/forms/closedEye.svg";
 import openedEye from "@/public/assets/forms/openedEye.svg";
 import Input from "../signup/components/input";
-import { setUserLoginEmail, setUserLoginPassword } from "@/redux/login";
+import { setUserLoginEmail, setUserLoginPassword } from "@/redux/auth/login";
 import { useAppSelector } from "@/redux/reduxHooks";
 import { useRouter } from "next/navigation";
 import AuthContainer from "../components/container";
+import Link from "next/link";
 
-export default function Signin() {
+export default function Login() {
   let EmailValue = useAppSelector((state) => state.userLogin.email);
   let PasswordValue = useAppSelector((state) => state.userLogin.password);
   let [currentActiveInput, setCurrentActiveInput] = useState(null);
@@ -24,13 +25,14 @@ export default function Signin() {
     withCredentials: true,
   });
   let isAuthenticated = useAppSelector((state) => state.user.isAuthenticated);
+
   let router = useRouter();
 
-  if (isAuthenticated) {
+  if (isAuthenticated == true) {
     router.push("/");
   }
   return (
-    <div className="flex flex-row items-center justify-center py-20">
+    <div className="flex flex-row items-center justify-center h-screen">
       <div className="w-11/12 sm:w-5/12 md:4/12 flex flex-row items-center justify-center">
         <AuthContainer>
           <h2 className="text-2xl font-bold primary-color text-center pb-4">
@@ -102,6 +104,20 @@ export default function Signin() {
                 Login
               </button>
             )}
+            <div className="flex flex-col gap-4">
+              <Link
+                href={"/auth/reset-password"}
+                className="text-3r text-gray-600 text-center cursor-pointer hover:text-gray-900 duration-200"
+              >
+                Forgot your password?{" "}
+              </Link>
+              <span className="text-3sb text-gray-700 w-full text-center">
+                Dont have an account{" "}
+                <Link className="text-red-500" href={"/auth/signup"}>
+                  Sign Up
+                </Link>
+              </span>
+            </div>
           </form>
         </AuthContainer>
       </div>

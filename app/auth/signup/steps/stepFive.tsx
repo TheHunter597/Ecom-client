@@ -1,10 +1,11 @@
 import AuthContainer from "../../components/container";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import avatarHolder from "@/public/assets/nav/avatarHolder.svg";
 import Image from "next/image";
 import useUploadImage from "@/utils/functions/uploadImage";
 import ReactLoading from "react-loading";
+import { useFetch } from "@/utils/hooks/useFetch";
 export default function FifthStep({
   changeCurrentStep,
 }: {
@@ -12,8 +13,24 @@ export default function FifthStep({
 }) {
   let [image, setImage] = useState<any>(null);
   let [displayImage, setDisplayImage] = useState(avatarHolder);
-  let { uploadImage, loading, error } = useUploadImage(image);
-
+  let { uploadImage, loading, imageUrl } = useUploadImage();
+  let { data, error, fetchData } = useFetch({
+    url: "/api/v1/auth/update/",
+    method: "put",
+    body: {
+      avatar: imageUrl,
+    },
+    withCredentials: true,
+    withToken: true,
+  });
+  useEffect(() => {
+    if (imageUrl) {
+      fetchData();
+    }
+    if (data != null) {
+      changeCurrentStep((prev: number) => prev + 1);
+    }
+  }, [imageUrl, data]);
   return (
     <div className="pt-20 flex flex-col items-center gap-10 primary-color">
       <h2 className="flex flex-col gap-2 items-center">
@@ -26,8 +43,7 @@ export default function FifthStep({
             className="flex flex-col gap-20 w-full items-center justify-center"
             onSubmit={async (e) => {
               e.preventDefault();
-              await uploadImage();
-              changeCurrentStep((prev: number) => prev + 1);
+              await uploadImage(image);
             }}
           >
             <div className="flex flex-col gap-12 items-center">
@@ -83,7 +99,14 @@ export default function FifthStep({
               </button>
             )}
           </form>
-          <button className="primary-color">pass</button>
+          <button
+            className="primary-color text-4sb underline cursor-pointer"
+            onClick={() => {
+              changeCurrentStep((prev: number) => prev + 1);
+            }}
+          >
+            skip this step
+          </button>
         </div>
       </AuthContainer>
     </div>

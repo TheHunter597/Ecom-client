@@ -1,7 +1,8 @@
 import { useAppDispatch, useAppSelector } from "@/redux/reduxHooks";
 import Image from "next/image";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
+import InputError from "./InputError";
 interface InputProps {
   placeholder: string;
   type: string;
@@ -14,6 +15,8 @@ interface InputProps {
     min?: number;
     max?: number;
     required?: boolean;
+    numberInupt?: boolean;
+    disabled?: boolean;
   };
   icon?: any;
   changeIcon?: any;
@@ -29,7 +32,7 @@ export default function Input({
   setCurrentActiveInput,
   icon,
   changeIcon,
-  properties: { min, max, required } = {},
+  properties: { min, max, required, numberInupt, disabled } = {},
   error,
 }: InputProps) {
   let labelVariants = {
@@ -48,24 +51,9 @@ export default function Input({
       },
     },
   };
-  let errorState = {
-    active: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.8,
-      },
-    },
-    inactive: {
-      opacity: 0,
-      y: -40,
-      transition: {
-        duration: 0.5,
-      },
-    },
-  };
+
   const dispatch = useAppDispatch();
-  const [isInputClicked, setIsInputClicked] = useState(false);
+  const [isInputActive, setIsInputActive] = useState(false);
   const [currentIcon, setCurrentIcon] = useState(icon);
   const [currentType, setCurrentType] = useState(type);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -84,38 +72,51 @@ export default function Input({
       setCurrentIcon(icon);
     }
   };
+  useEffect(() => {
+    if (inputRef.current?.value) {
+      setCurrentActiveInput(name);
+      setIsInputActive(true);
+    }
+  }, [inputRef.current?.value]);
   return (
     <div>
       <div
         onClick={() => {
           setCurrentActiveInput(name);
-          setIsInputClicked(true);
+          setIsInputActive(true);
           inputRef.current?.focus();
         }}
         className={`px-3 w-full border rounded-md shadow-md bg-white outline-black
       flex flex-row justify-between primary-color relative 
-      ${isInputClicked ? "outline-1 outline" : ""}`}
+      ${isInputActive ? "outline-1 outline" : ""} ${
+          disabled ? "bg-gray-200" : ""
+        }`}
       >
         <motion.label
           variants={labelVariants}
           animate={
-            currentActiveInput == name || inputRef.current?.value
+            currentActiveInput == name ||
+            inputRef.current?.value ||
+            isInputActive
               ? "active"
               : "inactive"
           }
           className={`absolute top-1/4 ${
-            isInputClicked || value ? "text-4sb" : ""
+            isInputActive || value ? "text-4sb" : ""
           }`}
         >
           {placeholder}
         </motion.label>
         <input
-          className={`h-full py-4 w-10/12 outline-none `}
+          disabled={disabled}
+          className={`h-full py-4 w-10/12 outline-none text-3sb  ${
+            disabled ? "bg-gray-200" : ""
+          }`}
           type={currentType}
           value={value}
           name={name}
           onBlur={() => {
-            setIsInputClicked(false);
+            setIsInputActive(false);
             if (value === "") {
               setCurrentActiveInput(null);
             }
@@ -144,13 +145,7 @@ export default function Input({
           ""
         )}
       </div>
-      <motion.small
-        className="text-red-600 text-center text-4sb"
-        variants={errorState}
-        animate={error ? "active" : "inactive"}
-      >
-        {error}
-      </motion.small>
+      <InputError error={error} />
     </div>
   );
 }
