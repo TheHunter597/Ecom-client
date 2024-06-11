@@ -11,12 +11,12 @@ export default function SimpleProductElement({
   return (
     <div
       className="p-4 rounded-lg bg-white flex flex-col items-center justify-center gap-4 w-80 shadow-xl
-     cursor-pointer h-fit"
+     cursor-pointer h-full"
     >
       <Image
         width={0}
         height={0}
-        sizes="20we"
+        sizes="20wv"
         style={{ height: "16rem", width: "16rem" }}
         src={product.image}
         alt={product.title}

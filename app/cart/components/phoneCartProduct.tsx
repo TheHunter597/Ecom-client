@@ -40,13 +40,17 @@ export default function PhoneCartProduct({
               </span>
             </div>
             <div className="flex flex-row justify-between">
-              <span className="text-3sb primary-color">Color: </span>
-              <span
-                className="text-3sb primary-color"
-                style={{ color: color.hex }}
-              >
-                {color.name}
-              </span>
+              {color && (
+                <>
+                  <span className="text-3sb primary-color">Color: </span>
+                  <span
+                    className="text-3sb primary-color"
+                    style={{ color: color.hex }}
+                  >
+                    {color.name}
+                  </span>
+                </>
+              )}
             </div>
             {size && (
               <div className="flex flex-row justify-between">

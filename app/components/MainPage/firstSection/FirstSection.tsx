@@ -13,11 +13,11 @@ export default async function FirstSection() {
   });
 
   return (
-    <div className="w-full bg-yellow-100 py-8">
+    <div className="w-full bg-emerald-200 py-8">
       <div className="w-11/12 m-auto  flex flex-col gap-12 ">
         <div className="flex flex-col gap-4 secondary-color">
           <div className="flex flex-row justify-between">
-            <h2 className="header-5sb">Categories</h2>
+            <h2 className="desktop-4sb font-bold text-gray-800">Categories</h2>
           </div>
         </div>
         <CategoriesResult categories={categoriesData.categories} />

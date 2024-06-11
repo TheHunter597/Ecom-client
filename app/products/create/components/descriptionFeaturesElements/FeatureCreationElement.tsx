@@ -76,7 +76,6 @@ export default function FeatureCreationElement({
           properties={{ required: true, min: 8, max: 100 }}
           currentActiveInput={currentActiveInput}
           setCurrentActiveInput={setCurrentActiveInput}
-          // error={error?.errors?.email}
         />
         <button
           className="text-4sb primary-color p-3 main-yellow-background-color w-fit self-end "

@@ -6,6 +6,10 @@ import SettingsUserData from "./components/SettingsUserData";
 import AccountSettingsElement from "./components/AccountSettingsElement";
 import ProtectedRouteUserAuth from "@/utils/Errors/UserAuthenticatedRoute";
 import WishListIcon from "@/public/assets/products/wishlist.svg";
+
+export const metadata = {
+  title: "Settings",
+};
 export default function Settings() {
   const settingsElements = [
     {

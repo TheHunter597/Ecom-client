@@ -51,7 +51,7 @@ export default function MakeSlider({
         className="relative w-full overflow-x-auto hideScrollBar"
         ref={mainDev}
       >
-        <div className="grid grid-flow-col gap-6 w-fit h-fit overflow-x-hidden mx-2 overflow-y-hidden">
+        <div className="grid grid-flow-col gap-2 w-fit h-fit overflow-x-hidden mx-2 overflow-y-hidden">
           {children}
         </div>
       </div>

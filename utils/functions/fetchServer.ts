@@ -27,6 +27,7 @@ export async function fetchServer({
   if (withToken) {
     token = cookies().get("access")?.value;
   }
+  console.log(`http://${service}:${port}/${url}`);
 
   try {
     let response = await fetch(`http://${service}:${port}/${url}`, {

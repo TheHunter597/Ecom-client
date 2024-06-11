@@ -8,6 +8,7 @@ import { loadLocalStorage } from "@/redux/products/productsSlice";
 import { loadEditProductData } from "@/redux/products/editProductSlice";
 import { IProduct } from "@/utils/types";
 import { revalidateProductPage } from "@/utils/functions/serverActions";
+import ReactLoading from "react-loading";
 
 export default function CreateEditProduct({
   categories,
@@ -16,6 +17,7 @@ export default function CreateEditProduct({
   data,
   state,
   editProductData,
+  loading,
 }: {
   categories: string[];
   fetchData: any;
@@ -23,6 +25,7 @@ export default function CreateEditProduct({
   data: any;
   state: "edit" | "create";
   editProductData?: IProduct;
+  loading: boolean;
 }) {
   const [preview, setPreview] = useState(false);
   const dispatch = useDispatch();
@@ -80,14 +83,20 @@ export default function CreateEditProduct({
           >
             {preview ? "Edit" : "Preview"}
           </button>
-          <button
-            className="text-3sb primary-color p-3 main-yellow-background-color w-fit sm:w-1/4 self-end"
-            // onClick={async (e) => {
-            //   e.preventDefault();
-            // }}
-          >
-            {state == "create" ? "Add Product" : "Update Product"}
-          </button>
+          {loading ? (
+            <div className="flex flex-row justify-center">
+              <ReactLoading
+                type="bubbles"
+                width={50}
+                height={40}
+                color="#101B42"
+              />
+            </div>
+          ) : (
+            <button className="text-3sb primary-color p-3 main-yellow-background-color w-fit sm:w-1/4 self-end">
+              {state == "create" ? "Add Product" : "Update Product"}
+            </button>
+          )}
         </div>
       </div>
     </form>

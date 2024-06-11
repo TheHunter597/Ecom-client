@@ -1,4 +1,5 @@
 import ChooseFromOverlay from "@/app/auth/signup/components/ChooseFromOverlay";
+import InputError from "@/app/auth/signup/components/InputError";
 import {
   selectEditProduct,
   setEditProductCategory,
@@ -7,17 +8,18 @@ import {
   selectCreateProduct,
   setProductCategory,
 } from "@/redux/products/productsSlice";
-import { useAppDispatch, useAppSelector } from "@/redux/reduxHooks";
-import { useEffect, useState } from "react";
+import { useAppSelector } from "@/redux/reduxHooks";
 
 interface ProductCategoryProps {
   cateogires: string[];
   state: "edit" | "create";
+  error: any;
 }
 
 export default function ProductCategory({
   cateogires,
   state,
+  error,
 }: ProductCategoryProps) {
   const { category } = useAppSelector(
     state === "edit" ? selectEditProduct : selectCreateProduct
@@ -33,6 +35,7 @@ export default function ProductCategory({
         list={cateogires}
         text="Category"
       />
+      <InputError error={error?.errors.category} />
     </div>
   );
 }

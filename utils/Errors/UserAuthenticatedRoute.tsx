@@ -1,6 +1,5 @@
 import React from "react";
 import checkUserAuthenticated from "../functions/checkUserAuthenticated";
-import AuthenticationError from "../test";
 import UserAuthenticatedWrapper from "./UserAuthenticatedWrapper";
 export default async function ProtectedRouteUserAuth({
   children,

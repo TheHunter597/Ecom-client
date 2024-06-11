@@ -3,8 +3,8 @@ import Image from "next/image";
 export default function SimpleOrderElement({ order }: { order: IOrder }) {
   return (
     <div
-      className="p-4 rounded-lg bg-white flex flex-col items-center justify-center gap-4 w-80 shadow-xl
-     cursor-pointer h-fit"
+      className="p-4 rounded-lg h-full bg-white flex flex-col items-center justify-center gap-4 w-80 shadow-xl
+     cursor-pointer"
     >
       <Image
         width={0}
@@ -39,7 +39,10 @@ export default function SimpleOrderElement({ order }: { order: IOrder }) {
           <div className="flex flex-row w-full justify-between">
             <span>Total price</span>
             <span className="secondary-color">
-              ${Number(order.product.price) * Number(order.quantity)}
+              $
+              {Number(
+                Number(order.product.price) * Number(order.quantity)
+              ).toFixed(2)}
             </span>
           </div>
         </div>

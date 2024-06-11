@@ -1,7 +1,11 @@
+import { Metadata } from "next";
 import Hero from "../components/MainPage/Hero/Hero";
 import FirstSection from "../components/MainPage/firstSection/FirstSection";
 import ProductsSlide from "../components/MainPage/secondSection/ProductsSlide";
 export const revalidate = true;
+export const metadata: Metadata = {
+  title: "EcoMart",
+};
 export default function Home() {
   return (
     <div>

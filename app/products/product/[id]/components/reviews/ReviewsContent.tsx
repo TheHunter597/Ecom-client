@@ -2,11 +2,6 @@
 import { IReview } from "@/utils/types";
 import ReviewElement from "./ReviewElement";
 import { AnimatePresence, motion } from "framer-motion";
-import PlusIconGray from "@/public/assets/forms/plusGray.svg";
-import PlusIconWhite from "@/public/assets/forms/plusWhite.svg";
-
-import Image from "next/image";
-import { useState } from "react";
 
 export default function ReviewsContent({
   reviews,
@@ -21,7 +16,6 @@ export default function ReviewsContent({
   setReviewsNumber: Function;
   filterDate: { name: string; value: number };
 }) {
-  let [plusHovered, setPlusHovered] = useState<boolean>(false);
   let reviewVariants = {
     initial: (delay: number) => {
       return {
@@ -74,7 +68,7 @@ export default function ReviewsContent({
     });
   return (
     <div className="flex flex-col gap-10 items-center">
-      <div className="flex flex-col gap-12">
+      <div className="flex flex-col gap-12 w-full">
         <AnimatePresence>{reviewsResult}</AnimatePresence>
       </div>
       <div className="flex flex-col gap-8">
@@ -84,27 +78,6 @@ export default function ReviewsContent({
         >
           {reviews.length > reviewsNumber ? "Load More" : "No More Reviews"}
         </span>
-        {/* <div className="flex flex-col gap-1 w-1/2 self-center">
-          <button
-            className="p-2 first-letter:uppercase border-2 text-2sb rounded-md
-          border-gray-800 flex flex-row gap-2 items-center justify-center
-          hover:text-white hover:bg-gray-800 duration-200
-          "
-            onMouseEnter={() => setPlusHovered(true)}
-            onMouseLeave={() => setPlusHovered(false)}
-          >
-            Write a review
-            <Image
-              src={plusHovered ? PlusIconWhite : PlusIconGray}
-              alt="plus icon"
-              height={20}
-              width={20}
-            />
-          </button>
-          <span className="text-gray text-center">
-            You should have purchased the product to add a review
-          </span>
-        </div> */}
       </div>
     </div>
   );

@@ -1,7 +1,10 @@
 import { fetchServer } from "@/utils/functions/fetchServer";
 import MyOrdersMainContent from "./components/myOrdersMainContent";
 import ProtectedRouteUserAuth from "@/utils/Errors/UserAuthenticatedRoute";
-
+import EmptyPage from "../components/EmptyPage";
+export const metadata = {
+  title: "My Orders",
+};
 export default async function MyOrders() {
   const orders = await fetchServer({
     urlInfo: {
@@ -17,7 +20,7 @@ export default async function MyOrders() {
 
   return (
     <ProtectedRouteUserAuth>
-      <div className="w-full bg-gray-200 h-screen ">
+      <div className="w-full bg-gray-100 h-screen ">
         <div className={`flex flex-col gap-4 mx-auto pt-8 `}>
           <div className="flex flex-col gap-1 w-10/12 mx-auto border-gray-500 pb-2">
             <h3 className="font-bold primary-color header-5sb first-letter:uppercase">
@@ -27,12 +30,7 @@ export default async function MyOrders() {
           {orders.orders.length > 0 ? (
             <MyOrdersMainContent orders={orders.orders} />
           ) : (
-            <div
-              className="h-96 header-4sb text-center flex flex-col
-           items-center justify-center self-center  primary-color font-bold"
-            >
-              <h2>You have not created any orders to display</h2>
-            </div>
+            <EmptyPage text={"You have not created any orders to display"} />
           )}
         </div>
       </div>

@@ -25,7 +25,7 @@ export default function ColorElement({
       className={`${
         type == "small" ? "h-6 w-6" : "h-9 w-9"
       } rounded-full flex flex-col items-center justify-center 
-             cursor-pointer hover:scale-105 duration-150`}
+             cursor-pointer hover:scale-105 duration-150 border border-gray-300`}
       onClick={() => {
         if (setChosenColor) setChosenColor(color);
       }}

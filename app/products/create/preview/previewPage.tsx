@@ -50,6 +50,7 @@ export default function PreviewPage() {
   const missingFields = Object.keys(otherProduct).filter(
     // @ts-ignore
     (item: keyof typeof product) => {
+      if (item == "sizes") return false;
       if (typeof product[item] == "object" && !Array.isArray(item)) {
         if (Object.keys(product[item]).length === 0) {
           return true;

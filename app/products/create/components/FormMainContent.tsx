@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import ProductName from "./elements/ProductTitle";
 import Tags from "./elements/Tags";
 import ProductPrice from "./elements/ProductPrice";
@@ -7,10 +7,6 @@ import ProductSize from "./elements/ProductSize";
 import ProductDescriptionFeatures from "./elements/ProductDescription";
 import ProductCategory from "./elements/category/ProductCategory";
 import ProductCountInStock from "./elements/ProductCountInStock";
-import { useDispatch } from "react-redux";
-import { loadLocalStorage } from "@/redux/products/productsSlice";
-import { loadEditProductData } from "@/redux/products/editProductSlice";
-import { IProduct } from "@/utils/types";
 
 export default function FormMainContent({
   error,
@@ -61,7 +57,7 @@ export default function FormMainContent({
         error={error}
         state={state}
       />
-      <ProductCategory cateogires={categories} state={state} />
+      <ProductCategory cateogires={categories} state={state} error={error} />
       <ProductCountInStock
         currentActiveInput={currentActiveInput}
         setCurrentActiveInput={setCurrentActiveInput}

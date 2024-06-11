@@ -1,8 +1,10 @@
 import { fetchServer } from "@/utils/functions/fetchServer";
 import MainProductContent from "./MainProductContent";
 import { IProduct } from "@/utils/types";
-export const dynamic = "force-static";
-
+export const dynamic = "force-dyanmic";
+export const metadata = {
+  title: "Product Page",
+};
 export async function generateStaticParams({
   params: { id },
 }: {

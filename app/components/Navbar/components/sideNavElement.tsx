@@ -29,6 +29,8 @@ export default function SideNavElement({
       </div>
     );
   } else {
+    console.log({ link }, link.includes("port"));
+
     return (
       <Link
         href={link}

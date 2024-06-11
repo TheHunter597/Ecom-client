@@ -65,14 +65,14 @@ export default function CategoryElement({
     initial: {
       width:
         currentActive - 1 == index || currentActive + 1 == index
-          ? "10rem"
-          : "14rem",
+          ? "8rem"
+          : "10.8rem",
       fontSize:
         currentActive - 1 == index || currentActive + 1 == index
           ? "1.2rem"
           : "1.5rem",
       y: index % 2 === 0 ? -20 : 20,
-      clipPath: "polygon(10% 0, 100% 0%, 90% 100%, 0% 100%)",
+      // clipPath: "polygon(10% 0, 100% 0%, 90% 100%, 0% 100%)",
       filter: "brightness(82%)",
     },
     active: {
@@ -81,7 +81,7 @@ export default function CategoryElement({
         duration: 0.3,
         ease: "easeInOut",
       },
-      clipPath: "polygon(0 0, 100% 0%, 100% 100%, 0% 100%)",
+      // clipPath: "polygon(0 0, 100% 0%, 100% 100%, 0% 100%)",
       filter: "brightness(100%)",
     },
   };
@@ -89,11 +89,6 @@ export default function CategoryElement({
     <div
       onMouseDown={(e) => {
         setElementPointerCurrentX(e.clientX);
-      }}
-      onMouseUp={(e) => {
-        if (Math.abs(elementPointerCurrentX - e.clientX) < 10) {
-          // router.push(`/products?category=${link}`);
-        }
       }}
       className="w-fit px-2"
       onMouseEnter={() => {
@@ -107,7 +102,7 @@ export default function CategoryElement({
     >
       <motion.div
         variants={imageVariants}
-        className="relative flex items-center justify-center cursor-pointer overflow-hidden w-fit"
+        className="relative flex items-center justify-center cursor-pointer overflow-hidden w-fit rounded-2xl "
         animate={hovered ? "active" : "initial"}
         initial="initial"
       >
@@ -118,11 +113,12 @@ export default function CategoryElement({
           height={0}
           width={0}
           sizes="20vw"
+          quality={100}
           style={{
             height: "70vh",
-            width: "16rem",
+            width: "100%",
           }}
-          className="FirstSectionImage"
+          className="FirstSectionImage rounded-2xl"
         />
         <AnimatePresence>
           {!hovered ? (
@@ -156,7 +152,17 @@ export default function CategoryElement({
            bg-black bg-opacity-50"
             >
               <h3 className="text-center flex flex-col gap-2 text-white">
-                <span className="text-2sb">{name}</span>
+                <span className="text-2sb">
+                  {name.includes("&")
+                    ? name
+                        .split("&")
+                        .map(
+                          (element) =>
+                            element.charAt(0).toUpperCase() + element.slice(1)
+                        )
+                        .join(" & ")
+                    : name.charAt(0).toUpperCase() + name.slice(1)}
+                </span>
                 <span className="text-3r">
                   View most popular products in {name} category
                 </span>

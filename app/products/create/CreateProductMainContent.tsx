@@ -7,7 +7,6 @@ import PreviewPage from "./preview/previewPage";
 import { useFetch } from "@/utils/hooks/useFetch";
 import { useAppSelector } from "@/redux/reduxHooks";
 import { selectCreateProduct } from "@/redux/products/productsSlice";
-import InputError from "@/app/auth/signup/components/InputError";
 import CreateEditProduct from "../components/CreateEditProduct";
 
 export default function CreateProductMainContent({
@@ -17,7 +16,7 @@ export default function CreateProductMainContent({
 }) {
   const createProductData = useAppSelector(selectCreateProduct);
 
-  const { fetchData, data, error } = useFetch({
+  const { fetchData, data, error, loading } = useFetch({
     url: "/api/v1/products/create/",
     method: "post",
     body: createProductData,
@@ -34,6 +33,7 @@ export default function CreateProductMainContent({
           fetchData={fetchData}
           error={error}
           data={data}
+          loading={loading}
           state="create"
         />
       </div>

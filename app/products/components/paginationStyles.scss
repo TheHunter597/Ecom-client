@@ -1,35 +1,5 @@
-.PaginationClass {
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
-  margin-bottom: 20px;
-  gap: 0.7rem;
-
-  .next,
-  .previous {
-    background-color: transparent;
-    border-radius: 4px;
-
-    a {
-      color: #27272a;
-    }
-    &:hover {
-      a {
-        color: white !important;
-      }
-    }
+.activePaginationElement {
+  a {
+    color: white !important;
   }
-  li {
-    border-radius: 100%;
-    padding: 0.2rem 0.5rem;
-    color: white;
-    transition-duration: 300ms;
-    cursor: pointer;
-    &:hover {
-      background-color: #ef4444;
-    }
-  }
-  //   .selected {
-  //     background-color: #ef4444;
-  //   }
 }

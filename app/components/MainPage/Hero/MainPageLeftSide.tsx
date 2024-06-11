@@ -18,14 +18,18 @@ export default function MainPageLeftSide() {
           <span className="tertiary-color ">Shop</span> Now for Exclusive Deals
         </h3>
         <div className="flex flex-row gap-4">
-          <button className="text-2r primary-color main-yellow-background-color py-2 px-2 rounded-md">
+          <Link
+            href={"/products?discount=gt,0"}
+            className="text-2r primary-color main-yellow-background-color py-2 px-2 rounded-md"
+          >
             Find out what’s new
-          </button>
+          </Link>
           <Link
             href={(process.env.NEXT_PUBLIC_PORTFOLIO_URL as string) || ""}
+            target="_blank"
             className="text-2r text-white primary-background-color py-2 px-2 rounded-md"
           >
-            Contact us
+            Contact Me
           </Link>
         </div>
       </div>

@@ -17,7 +17,7 @@ export default function RemoveFromWishList({
   );
   let { fetchData, loading, error, data } = useFetch({
     url: "/api/v1/wishlist/" + cartElementToDelete,
-    method: "post",
+    method: "delete",
     withToken: true,
     withCredentials: true,
   });

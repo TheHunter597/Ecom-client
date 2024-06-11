@@ -15,7 +15,7 @@ export default function RemoveProductFromCartButton({
 }) {
   let { fetchData, loading, error, data } = useFetch({
     url: "/api/v1/cart/" + productId,
-    method: "post",
+    method: "delete",
     withToken: true,
     withCredentials: true,
   });

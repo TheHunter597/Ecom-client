@@ -33,6 +33,7 @@ export const useFetch = ({
       body[Object.keys(overload)[0]] = overload[Object.keys(overload)[0]];
     }
     setLoading(true);
+
     try {
       let res;
 

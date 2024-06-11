@@ -2,6 +2,7 @@ import { IProduct } from "@/utils/types";
 import { useState } from "react";
 import ResultProduct from "./ResultProduct";
 import ReactPaginate from "react-paginate";
+import "./paginationStyles.scss";
 export default function FilterSectionContent({
   filterDate,
   filterRate,
@@ -83,9 +84,8 @@ export default function FilterSectionContent({
           renderOnZeroPageCount={null}
           className="PaginationClass text-2sb self-center flex flex-row items-center justify-center align-middle gap-2
         p-2 shadow-lg rounded-md mb-8 overflow-x-clip "
-          activeClassName="primary-background-color rounded-full text-white"
-          // disabledClassName="text-gray-400"
-          activeLinkClassName="text-white"
+          activeClassName="primary-background-color rounded-full text-white activePaginationElement"
+          // activeLinkClassName="text-white"
           pageLinkClassName="primary-color px-3 py-1 rounded-full border-2 primary-border-color inline-block
           hover:bg-gray-800 duration-300 hover:text-white"
           previousLinkClassName="hidden primary-background-color py-2 px-4 rounded-md text-3sb text-white inline-block

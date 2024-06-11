@@ -6,6 +6,7 @@ import RatingStars from "../product/components/RatingStars";
 import { useRouter } from "next/navigation";
 import { AddToWishlist } from "../product/components/CartWishButtonComponents.tsx/AddToWishlist";
 import RemoveFromWishList from "../product/components/CartWishButtonComponents.tsx/RemoveFromWishlist";
+import AddToCart from "../product/components/CartWishButtonComponents.tsx/AddToCart";
 
 export default function ResultProduct({
   product,

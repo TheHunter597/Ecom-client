@@ -11,6 +11,7 @@ import SideNavElement from "../components/sideNavElement";
 import { IFetchedUserData } from "@/utils/types";
 import ContactMeIcon from "@/public/assets/nav/Contact.svg";
 import { signOut } from "@/utils/functions/serverActions";
+import Link from "next/link";
 
 export default function SideNav({
   userData: {
@@ -79,12 +80,6 @@ export default function SideNav({
       text: "Create Product",
       alt: "create product icon",
       link: "/products/create",
-    },
-    {
-      icon: ContactMeIcon,
-      text: "Contact Me",
-      alt: "contact Me icon",
-      link: (process.env.NEXT_PUBLIC_PORTFOLIO_URL as string) || "",
     },
   ];
   const sideNavResult = elements.map((element, index) => {
