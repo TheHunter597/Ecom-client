@@ -1,9 +1,5 @@
 "use client";
 
-import { useState } from "react";
-import CreateProductImage from "./components/CreateEditProductImage";
-import FormMainContent from "./components/FormMainContent";
-import PreviewPage from "./preview/previewPage";
 import { useFetch } from "@/utils/hooks/useFetch";
 import { useAppSelector } from "@/redux/reduxHooks";
 import { selectCreateProduct } from "@/redux/products/productsSlice";

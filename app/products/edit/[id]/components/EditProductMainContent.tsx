@@ -13,7 +13,7 @@ export default function EditProductMainContent({
   categories: string[];
 }) {
   const editProductData = useAppSelector(selectEditProduct);
-  const { fetchData, data, error } = useFetch({
+  const { fetchData, data, error, loading } = useFetch({
     url: "/api/v1/products/update/" + product.id + "/",
     method: "put",
     body: editProductData,
@@ -35,6 +35,7 @@ export default function EditProductMainContent({
           data={data}
           state="edit"
           editProductData={product}
+          loading={loading}
         />
       </div>
     </div>
